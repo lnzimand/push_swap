@@ -5,9 +5,6 @@ typedef struct		Node
 {
 	int				data;
 	struct Node		*next;
-}					list;
-
-list				*top_a;
-list				*top_b;
+}					t_stack;
 
 #endif

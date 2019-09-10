@@ -6,93 +6,187 @@
 /*   By: lnzimand <lnzimand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 09:10:14 by lnzimand          #+#    #+#             */
-/*   Updated: 2019/09/03 12:00:13 by lnzimand         ###   ########.fr       */
+/*   Updated: 2019/09/10 10:59:23 by lnzimand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-void	lstdel(list *lst)
+void	lstdel(t_stack *lst)
 {
 	free(lst);
 }
 
-void	push_a(int data)
+t_stack	*alloc(void)
 {
-	list	*temp;
-	if (!(temp = (list*)malloc(sizeof(list))))
+	t_stack	*new;
+
+	if (!(new = (t_stack*)malloc(sizeof(t_stack))))
 	{
-		write(1, "\nInsufficient memory\n", 19);
+		ft_putendl("Insufficient memory");
 		exit(1);
 	}
-	temp->data = data;
-	temp->next = top_a;
-	top_a = temp;
+	return (new);
 }
 
-void	display()
+void	display(t_stack *top)
 {
-	list	*temp;
+	t_stack	*temp;
 
-	if (top_a == NULL)
+	if (top == NULL)
 	{
-		write(1, "\nStack underflow\n", 17);
+		ft_putendl("Stack underflow");
 		exit(1);
 	}
 	else
 	{
-		temp = top_a;
+		temp = top;
 		while (temp)
 		{
 			ft_putnbr(temp->data);
-			write(1, "\n", 1);
+			ft_putchar('\n');
 			temp = temp->next;
 		}
 	}
 }
 
-void	sa()
+void	pop(t_stack **top)
+{
+	t_stack	*temp;
+
+	if (*top == NULL)
+	{
+		ft_putendl("Stack underflow");
+		exit(1);
+	}
+	temp = (*top)->next;
+	lstdel(*top);
+	*top = temp;
+}
+
+void	pb(t_stack **top_b, int data)
+{
+	t_stack	*temp;
+
+	temp = alloc();
+	temp->data = data;
+	temp->next = *top_b;
+	*top_b = temp;
+}
+
+void	pa(t_stack **top_a, int data)
+{
+	t_stack	*temp;
+
+	temp = alloc();
+	temp->data = data;
+	temp->next = *top_a;
+	*top_a = temp;
+}
+
+void	sa(t_stack **top_a)
 {
 	ft_putendl("sa");
 	int		temp;
-	list	*current;
+	t_stack	*current;
 
-	current = top_a->next;
-	temp = top_a->data;
-	top_a->data = current->data;
+	current = (*top_a)->next;
+	temp = (*top_a)->data;
+	(*top_a)->data = current->data;
 	current->data = temp;
 }
 
-void	ra()
+void	sb(t_stack **top_b)
+{
+	ft_putendl("sb");
+	int		temp;
+	t_stack	*current;
+
+	current = (*top_b)->next;
+	temp = (*top_b)->data;
+	(*top_b)->data = current->data;
+	current->data = temp;
+}
+
+void	ss(t_stack **top_a, t_stack **top_b)
+{
+	sa(top_a);
+	sb(top_b);
+}
+
+void	ra(t_stack **top_a)
 {
 	ft_putendl("ra");
-	list	*current;
-	list	*last;
+	t_stack	*current;
+	t_stack	*last;
 
-	current = top_a;
-	last = top_a;
-	top_a = current->next;
+	current = *top_a;
+	last = *top_a;
+	*top_a = current->next;
 	while (current->next != NULL)
 		current = current->next;
 	current->next = last;
 	last->next = NULL;
 }
 
-void	rra()
+void	rb(t_stack **top_b)
+{
+	ft_putendl("rb");
+	t_stack	*current;
+	t_stack	*last;
+
+	current = *top_b;
+	last = *top_b;
+	*top_b = current->next;
+	while (current->next != NULL)
+		current = current->next;
+	current->next = last;
+	last->next = NULL;
+}
+
+void	rr(t_stack **top_a, t_stack **top_b)
+{
+	ra(top_a);
+	rb(top_b);
+}
+
+void	rra(t_stack **top_a)
 {
 	ft_putendl("rra");
-	list	*last;
-	list	*first;
+	t_stack	*last;
+	t_stack	*first;
 
-	last = top_a;
-	first = top_a;
-    while (last->next != NULL) { 
+	last = *top_a;
+	first = *top_a;
+    while (last->next->next != NULL) { 
         last = last->next; 
     } 
-    top_a = first->next->next; 
-    first->next->next = NULL; 
-    last->next = first; 
+    *top_a = last->next; 
+	last->next->next = first;
+    last->next = NULL;
+}
+
+void	rrb(t_stack **top_b)
+{
+	ft_putendl("rrb");
+	t_stack	*last;
+	t_stack	*first;
+
+	last = *top_b;
+	first = *top_b;
+    while (last->next->next != NULL) {
+        last = last->next;
+    }
+    *top_b = last->next;
+    last->next->next = first;
+    last->next = NULL;
+}
+
+void	rrr(t_stack **top_a, t_stack **top_b)
+{
+	rra(top_a);
+	rrb(top_b);
 }
 
 int		big_than_int(int ac, char **arr)
@@ -172,43 +266,63 @@ int		is_integer(int ac, char **arr)
 	return (1);
 }
 
-void	three_sort(void)
+/*void	sort_b(t_stack *top_b)
 {
-	if (top_a->data < top_a->next->next->data && top_a->next->data > top_a->next->next->data)
+	if (top_b->data < top_b->next->data)
+		sb(&top_b);
+	else
+		return ;
+}*/
+
+void	sort_a(t_stack **top_a)
+{
+	if ((*top_a)->data < (*top_a)->next->next->data && (*top_a)->next->data > (*top_a)->next->next->data)
 	{
-		sa();
-		ra();
+		sa(top_a);
+		ra(top_a);
 	}
-	else if (top_a->next->data < top_a->data && top_a->data < top_a->next->next->data)
-		sa();
-	else if (top_a->next->next->data < top_a->data && top_a->data < top_a->next->data)
-		rra();
-	else if (top_a->next->data < top_a->next->next->data && top_a->data > top_a->next->next->data)
-		ra();
-	else if (top_a->data > top_a->next->data && top_a->next->data > top_a->next->next->data)
+	else if ((*top_a)->next->data < (*top_a)->data && (*top_a)->data < (*top_a)->next->next->data)
+		sa(top_a);
+	else if ((*top_a)->next->next->data < (*top_a)->data && (*top_a)->data < (*top_a)->next->data)
+		rra(top_a);
+	else if ((*top_a)->next->data < (*top_a)->next->next->data && (*top_a)->data > (*top_a)->next->next->data)
+		ra(top_a);
+	else if ((*top_a)->data > (*top_a)->next->data && (*top_a)->next->data > (*top_a)->next->next->data)
 	{
-		ra();
-		sa();
+		ra(top_a);
+		sa(top_a);
 	}
 	else
 		return ;
 }
 
-void	five_sort(void)
+/*void	five_sort(void)
 {
-	
-}
+	int		index;
 
-void	push_swap(int type)
+	index = 0;
+	while (index < 2)
+	{
+		pb(top_a->data);
+		pop(&top_a);
+		index++;
+	}
+	sort_a();
+	sort_b();
+}*/
+
+void	push_swap(t_stack **top_a, int type)
 {
-	if (type == 4)
-		three_sort();
-	else if (type == 6)
-		five_sort();
+//	if (type == 4)
+//		sort_a(top_a);
+/*	else if (type == 6)
+		five_sort();*/
 }
 
 int		main(int argc, char **argv)
 {
+	t_stack	*top_a;
+	t_stack	*top_b;
 	char	**arr;
 	char	*temp;
 	int		index;
@@ -236,18 +350,15 @@ int		main(int argc, char **argv)
 		argc = index2;
 		while (index2 > 1)
 		{
-			push_a(ft_atoi(arr[index2 - 1]));
+			pa(&top_a, ft_atoi(arr[index2 - 1]));
 			index2--;
 		}
 		ft_putchar('\n');
-		ft_putendl("A BEFORE:");
-		display();
+		display(top_a);
 		ft_putchar('\n');
-		ft_putendl("ACTIONS");
-		push_swap(argc);
-		ft_putchar('\n');
-		ft_putendl("A AFTER:");
-		display();
+		push_swap(&top_a, argc);
+//		display(top_b);
+		display(top_a);
 		ft_putchar('\n');
 	}
 	return (0);
