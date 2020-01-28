@@ -6,7 +6,7 @@
 /*   By: lnzimand <lnzimand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 13:02:55 by lnzimand          #+#    #+#             */
-/*   Updated: 2019/09/10 13:03:35 by lnzimand         ###   ########.fr       */
+/*   Updated: 2019/12/11 09:04:38 by lnzimand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	ss(t_stack **top_a, t_stack **top_b)
 {
-	sa(top_a);
-	sb(top_b);
+	sa_sb(top_a);
+	sa_sb(top_b);
 }

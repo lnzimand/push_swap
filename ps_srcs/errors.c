@@ -16,8 +16,5 @@
 void	errors(char **arr, int size)
 {
 	if (!is_integer(size, arr) || big_than_int(size, arr) || is_dup(size, arr) || is_void(size, arr))
-	{
-		ft_putendl_fd("Error", 2);
-		exit (1);
-	}
+		errorHandler();
 }

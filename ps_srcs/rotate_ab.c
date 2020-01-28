@@ -6,7 +6,7 @@
 /*   By: lnzimand <lnzimand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 13:05:27 by lnzimand          #+#    #+#             */
-/*   Updated: 2019/09/10 13:05:57 by lnzimand         ###   ########.fr       */
+/*   Updated: 2019/12/11 09:04:19 by lnzimand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	rr(t_stack **top_a, t_stack **top_b)
 {
-	ra(top_a);
-	rb(top_b);
+	ra_rb(top_a);
+	ra_rb(top_b);
 }

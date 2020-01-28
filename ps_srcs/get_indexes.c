@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_rotate_b.c                                 :+:      :+:    :+:   */
+/*   get_indexes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lnzimand <lnzimand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/10 13:06:54 by lnzimand          #+#    #+#             */
-/*   Updated: 2019/09/11 11:30:40 by lnzimand         ###   ########.fr       */
+/*   Created: 2019/12/11 11:51:36 by lnzimand          #+#    #+#             */
+/*   Updated: 2019/12/11 11:56:28 by lnzimand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 #include "../libft/libft.h"
 
-void	rrb(t_stack **top_b)
+distance	get_indexes(t_stack *top)
 {
-	t_stack	*last;
-	t_stack	*first;
+	t_stack		*temp;
+	t_stack		*holder;
+	distance	indexes;
+	int			index;
 
-	last = *top_b;
-	first = *top_b;
-    while (last->next->next != NULL) {
-        last = last->next;
-    }
-    *top_b = last->next;
-    last->next->next = first;
-    last->next = NULL;
+	index = 1;
+	temp = holder = top;
+	indexes.max = biggest_int(top);
+	while (temp->next != NULL)
+	{
+		if (temp->data < temp->next->data && holder->data >= temp->data)
+		{
+			indexes.to_top = index;
+			holder = temp;
+		}
+		index++;
+		temp = temp->next;
+	}
+	indexes.to_bottom = index - indexes.to_top + 1;
+	return (indexes);
 }

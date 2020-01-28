@@ -6,7 +6,7 @@
 /*   By: lnzimand <lnzimand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 12:33:27 by lnzimand          #+#    #+#             */
-/*   Updated: 2019/09/12 13:34:26 by lnzimand         ###   ########.fr       */
+/*   Updated: 2019/12/11 09:31:41 by lnzimand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,20 @@ void	three_sort_b(t_stack **top_b)
 	while (last->next != NULL)
 		last = last->next;
 	if ((*top_b)->data < last->data && (*top_b)->next->data > last->data)
-		rb(top_b);
+		ra_rb(top_b);
 	else if ((*top_b)->next->data < (*top_b)->data && (*top_b)->data < last->data)
-		rrb(top_b);
+		rra_rrb(top_b);
 	else if (last->data < (*top_b)->data && (*top_b)->data < (*top_b)->next->data)
-		sb(top_b);
+		sa_sb(top_b);
 	else if ((*top_b)->next->data < last->data && (*top_b)->data > last->data)
 	{
-		rrb(top_b);
-		sb(top_b);
+		rra_rrb(top_b);
+		sa_sb(top_b);
 	}
 	else if ((*top_b)->data < (*top_b)->next->data && (*top_b)->next->data < last->data)
 	{
-		sb(top_b);
-		rrb(top_b);
+		sa_sb(top_b);
+		rra_rrb(top_b);
 	}
 	else
 		return ;

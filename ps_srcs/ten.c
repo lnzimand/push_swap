@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_a.c                                          :+:      :+:    :+:   */
+/*   ten.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lnzimand <lnzimand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/11 14:01:19 by lnzimand          #+#    #+#             */
-/*   Updated: 2019/12/11 09:29:22 by lnzimand         ###   ########.fr       */
+/*   Created: 2020/01/28 12:37:27 by lnzimand          #+#    #+#             */
+/*   Updated: 2020/01/28 13:17:05 by lnzimand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../push_swap.h"
 
-void	prep_stack(char **arr, t_stack **stack, int count)
+void	sort_ten(t_stack **top_a, t_stack **top_b)
 {
-	while (count > 1)
+	int		check;
+	int		check_b;
+
+	check = 1;
+	check_b = 1;
+	while (check)
 	{
-		pa_pb(stack, ft_atoi(arr[count - 1]));
-		count--;
+		check = ten_sort(top_a, top_b);
+		if (list_length(*top_b) > 1)
+			sort_b(top_a, top_b);
 	}
+	while (check_b)
+		check_b = ps_push_back_to_a(top_a, top_b);
+
 }

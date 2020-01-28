@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: lnzimand <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/24 10:26:37 by lnzimand          #+#    #+#              #
-#    Updated: 2019/09/17 10:07:56 by lnzimand         ###   ########.fr        #
+#    Updated: 2020/01/28 13:01:14 by lnzimand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,12 +31,15 @@ OBJS = ./libft/ft_strchr.o ./libft/ft_strrchr.o ./libft/ft_strstr.o ./libft/ft_s
 	   ./libft/ft_strncat.o ./libft/ft_strncpy.o ./libft/ft_lstadd.o ./libft/ft_isspace.o\
 	   ./gnl/get_next_line.o ./ps_srcs/alloc.o ./ps_srcs/display.o ./ps_srcs/ft_issign.o \
 	   ./ps_srcs/is_dup.o ./ps_srcs/is_integer.o ./ps_srcs/is_void.o ./ps_srcs/max_and_min_int.o \
-	   ./ps_srcs/lstdel.o ./ps_srcs/pop.o ./ps_srcs/push_a.o ./ps_srcs/push_b.o ./ps_srcs/swap_a.o \
-	   ./ps_srcs/swap_b.o ./ps_srcs/swap_ab.o ./ps_srcs/rotate_a.o ./ps_srcs/rotate_b.o \
-	   ./ps_srcs/rotate_ab.o ./ps_srcs/reverse_rotate_a.o ./ps_srcs/reverse_rotate_b.o \
+	   ./ps_srcs/lstdel.o ./ps_srcs/pop.o ./ps_srcs/push.o ./ps_srcs/swap.o ./ps_srcs/swap_ab.o \
+	   ./ps_srcs/rotate.o ./ps_srcs/rotate_ab.o ./ps_srcs/reverse_rotate.o \
 	   ./ps_srcs/reverse_rotate_ab.o ./ps_srcs/errors.o ./ps_srcs/array_length.o \
 	   ./ps_srcs/stack_a.o ./ps_srcs/three_sort_a.o ./ps_srcs/three_sort_b.o \
-	   ./ps_srcs/list_length.o
+	   ./ps_srcs/list_length.o ./ps_srcs/two_sort.o ./ps_srcs/sortb.o ./ps_srcs/get_indexes.o \
+	   ./ps_srcs/biggest_int.o ./ps_srcs/sorted_b.o ./ps_srcs/getlastlist.o ./ps_srcs/ps_push.o \
+	   ./ps_srcs/ps_swaps.o ./ps_srcs/ps_rotate.o ./ps_srcs/ps_rev_rot.o ./ps_srcs/ps_both.o \
+	   ./ps_srcs/error_handler.o ./ps_srcs/sorted_arr.o ./ps_srcs/ten.o ./ps_srcs/ten_sort.o \
+	   ./ps_srcs/five_sort.o ./ps_srcs/ps_all.o ./ps_srcs/push_to_a.o ./ps_srcs/extended_five_sort.o
 
 libftmake = $(MAKE) -C libft
 

@@ -14,36 +14,51 @@
 #include "push_swap.h"
 #include "gnl/get_next_line.h"
 
-int		instruct_valid(char *line)
+void	c_push(t_stack **first, t_stack **last)
 {
-	if ((ft_strcmp("sa", line) == 0) || (ft_strcmp("sb", line) == 0) || (ft_strcmp("ss", line) == 0))
-		return (1);
-	else if ((ft_strcmp("ra", line) == 0) || (ft_strcmp("rb", line) == 0) || (ft_strcmp("rr", line) == 0))
-		return (1);
-	else if ((ft_strcmp("rra", line) == 0) || (ft_strcmp("rrb", line) == 0) || (ft_strcmp("rrr", line) == 0))
-		return (1);
-	return (0);
+	pa_pb(first, (*last)->data);
+	pop(last);
 }
 
-int		getline(void)
+void	execution(t_stack **top_a, t_stack **top_b, char *line)
+{
+	if (!ft_strcmp("sa", line))
+		sa_sb(top_a);
+	else if (!ft_strcmp("sb", line))
+		sa_sb(top_b);
+	else if (!ft_strcmp("ss", line))
+		ss(top_a, top_b);
+	else if (!ft_strcmp("pa", line))
+		c_push(top_a, top_b);
+	else if (!ft_strcmp("pb", line))
+		c_push(top_b, top_a);
+	else if (!ft_strcmp("ra", line))
+		ra_rb(top_a);
+	else if (!ft_strcmp("rb", line))
+		ra_rb(top_b);
+	else if (!ft_strcmp("rr", line))
+		rr(top_a, top_b);
+	else if (!ft_strcmp("rra", line))
+		rra_rrb(top_a);
+	else if (!ft_strcmp("rrb", line))
+		rra_rrb(top_b);
+	else if (!ft_strcmp("rrr", line) && list_length(*top_a) > 1 && list_length(*top_b) > 1)
+		rrr(top_a, top_b);
+	else
+		errorHandler();
+}
+
+int		getline(t_stack **top_a, t_stack **top_b)
 {
 	char	*line;
 
-	while (get_next_line(0, &line) == 1)
-	{
-		if (!instruct_valid(line))
-		{
-			ft_putendl_fd("Error", 2);
-			exit(1);
-		}
-	}
+	while (get_next_line(0, &line) > 0)
+		execution(top_a, top_b, line);
+	if (sorted_arr(top_a) && !list_length(*top_b))
+		ft_putendl("OK");
+	else
+		ft_putendl("KO");
 	return (1);
-}
-
-void	push_swap(t_stack **top_b, int type)
-{
-	if (type == 4)
-		three_sort_a(top_b);
 }
 
 int		main(int argc, char **argv)
@@ -65,14 +80,8 @@ int		main(int argc, char **argv)
 			arr = argv;
 		argc = array_length(arr);
 		errors(arr, argc);
-//		getline();
 		prep_stack(arr, &top_a, argc);
-		ft_putchar('\n');
-		display(top_a);
-		ft_putchar('\n');
-		push_swap(&top_a, argc);
-		display(top_a);
-		ft_putchar('\n');
+		getline(&top_a, &top_b);
 	}
 	return (0);
 }

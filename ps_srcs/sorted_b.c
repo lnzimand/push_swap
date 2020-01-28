@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_a.c                                           :+:      :+:    :+:   */
+/*   sorted_b.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lnzimand <lnzimand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/10 12:59:32 by lnzimand          #+#    #+#             */
-/*   Updated: 2019/09/17 10:06:38 by lnzimand         ###   ########.fr       */
+/*   Created: 2019/12/11 11:58:23 by lnzimand          #+#    #+#             */
+/*   Updated: 2019/12/11 12:16:17 by lnzimand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+#include "../libft/libft.h"
 
-void	pa(t_stack **top_a, int data)
+int		sorted_b(t_stack *top)
 {
 	t_stack	*temp;
 
-	temp = alloc();
-	temp->data = data;
-	temp->next = *top_a;
-	*top_a = temp;
+	temp = top;
+	while (temp->next != NULL)
+	{
+		if (temp->data < temp->next->data)
+			return (0);
+		temp = temp->next;
+	}
+	return (1);
 }

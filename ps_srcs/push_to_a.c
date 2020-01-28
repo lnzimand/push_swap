@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_a.c                                          :+:      :+:    :+:   */
+/*   push_to_a.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lnzimand <lnzimand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/11 14:01:19 by lnzimand          #+#    #+#             */
-/*   Updated: 2019/12/11 09:29:22 by lnzimand         ###   ########.fr       */
+/*   Created: 2020/01/28 12:49:49 by lnzimand          #+#    #+#             */
+/*   Updated: 2020/01/28 12:50:32 by lnzimand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../push_swap.h"
 
-void	prep_stack(char **arr, t_stack **stack, int count)
+int		ps_push_back_to_a(t_stack **top_a, t_stack **top_b)
 {
-	while (count > 1)
-	{
-		pa_pb(stack, ft_atoi(arr[count - 1]));
-		count--;
-	}
+	if (*top_b != NULL)
+		ps_push_to_a(top_a, top_b);
+	return (list_length(*top_b));
 }

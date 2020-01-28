@@ -6,15 +6,15 @@
 /*   By: lnzimand <lnzimand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:36:01 by lnzimand          #+#    #+#             */
-/*   Updated: 2019/09/12 13:56:08 by lnzimand         ###   ########.fr       */
+/*   Updated: 2019/12/11 09:37:58 by lnzimand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 #include "../libft/libft.h"
 
-void	two_sort(t_stack **top)
+void	two_sort_b(t_stack **top)
 {
 	if ((*top)->data < (*top)->next->data)
-		sb(top);
+		sa_sb(top);
 }

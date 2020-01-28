@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_a.c                                          :+:      :+:    :+:   */
+/*   rotate_a.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lnzimand <lnzimand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/11 14:01:19 by lnzimand          #+#    #+#             */
-/*   Updated: 2019/12/11 09:29:22 by lnzimand         ###   ########.fr       */
+/*   Created: 2019/09/10 13:03:52 by lnzimand          #+#    #+#             */
+/*   Updated: 2019/12/11 09:01:07 by lnzimand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
 #include "../push_swap.h"
+#include "../libft/libft.h"
 
-void	prep_stack(char **arr, t_stack **stack, int count)
+void	ra_rb(t_stack **top)
 {
-	while (count > 1)
-	{
-		pa_pb(stack, ft_atoi(arr[count - 1]));
-		count--;
-	}
+	t_stack	*current;
+	t_stack	*last;
+
+	current = *top;
+	last = *top;
+	*top = current->next;
+	while (current->next != NULL)
+		current = current->next;
+	current->next = last;
+	last->next = NULL;
 }

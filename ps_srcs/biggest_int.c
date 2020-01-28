@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap_a.c                                           :+:      :+:    :+:   */
+/*   biggest_int.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lnzimand <lnzimand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/10 13:01:05 by lnzimand          #+#    #+#             */
-/*   Updated: 2019/09/10 14:55:19 by lnzimand         ###   ########.fr       */
+/*   Created: 2019/12/11 11:56:51 by lnzimand          #+#    #+#             */
+/*   Updated: 2019/12/11 11:57:53 by lnzimand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+#include "../libft/libft.h"
 
-void	sa(t_stack **top_a)
+int		biggest_int(t_stack *stack)
 {
-	int		temp;
-	t_stack	*current;
+	int		big;
 
-	current = (*top_a)->next;
-	temp = (*top_a)->data;
-	(*top_a)->data = current->data;
-	current->data = temp;
+	big = 0;
+	while (stack != NULL)
+	{
+		if (big < stack->data)
+			big = stack->data;
+		stack = stack->next;
+	}
+	return (big);
 }

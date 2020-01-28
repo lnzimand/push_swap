@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate_b.c                                         :+:      :+:    :+:   */
+/*   reverse_rotate_a.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lnzimand <lnzimand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/10 13:04:52 by lnzimand          #+#    #+#             */
-/*   Updated: 2019/09/11 11:27:03 by lnzimand         ###   ########.fr       */
+/*   Created: 2019/09/10 13:06:14 by lnzimand          #+#    #+#             */
+/*   Updated: 2019/12/11 09:02:28 by lnzimand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 #include "../libft/libft.h"
 
-void	rb(t_stack **top_b)
+void	rra_rrb(t_stack **top)
 {
-	t_stack	*current;
 	t_stack	*last;
+	t_stack	*first;
 
-	current = *top_b;
-	last = *top_b;
-	*top_b = current->next;
-	while (current->next != NULL)
-		current = current->next;
-	current->next = last;
-	last->next = NULL;
+	last = *top;
+	first = *top;
+    while (last->next->next != NULL) {
+        last = last->next;
+    }
+    *top = last->next;
+	last->next->next = first;
+    last->next = NULL;
 }

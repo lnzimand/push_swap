@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_b.c                                           :+:      :+:    :+:   */
+/*   getlastlist.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lnzimand <lnzimand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/10 12:57:30 by lnzimand          #+#    #+#             */
-/*   Updated: 2019/09/10 12:58:26 by lnzimand         ###   ########.fr       */
+/*   Created: 2019/12/11 14:49:49 by lnzimand          #+#    #+#             */
+/*   Updated: 2019/12/11 14:54:46 by lnzimand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+#include "../libft/libft.h"
 
-void	pb(t_stack **top_b, int data)
+t_stack *stack_bottom(t_stack *top)
 {
-	t_stack	*temp;
+	t_stack *temp;
 
-	temp = alloc();
-	temp->data = data;
-	temp->next = *top_b;
-	*top_b = temp;
+	while (top->next != NULL)
+		top = top->next;
+	temp = top;
+	return (temp);
 }
