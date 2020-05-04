@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS = -Wall -Werror -Wextra -c 
+FLAGS = -Wall -Werror -Wextra
 
 NAME = push_swap.a
 
@@ -38,8 +38,8 @@ OBJS = ./libft/ft_strchr.o ./libft/ft_strrchr.o ./libft/ft_strstr.o ./libft/ft_s
 	   ./ps_srcs/list_length.o ./ps_srcs/two_sort.o ./ps_srcs/sortb.o ./ps_srcs/get_indexes.o \
 	   ./ps_srcs/biggest_int.o ./ps_srcs/sorted_b.o ./ps_srcs/getlastlist.o ./ps_srcs/ps_push.o \
 	   ./ps_srcs/ps_swaps.o ./ps_srcs/ps_rotate.o ./ps_srcs/ps_rev_rot.o ./ps_srcs/ps_both.o \
-	   ./ps_srcs/error_handler.o ./ps_srcs/sorted_arr.o ./ps_srcs/ten.o ./ps_srcs/ten_sort.o \
-	   ./ps_srcs/five_sort.o ./ps_srcs/ps_all.o ./ps_srcs/push_to_a.o ./ps_srcs/extended_five_sort.o
+	   ./ps_srcs/error_handler.o ./ps_srcs/sorted_arr.o ./ps_srcs/five_sort.o ./ps_srcs/ps_all.o\
+	   ./ps_srcs/push_to_a.o ./ps_srcs/extended_five_sort.o
 
 libftmake = $(MAKE) -C libft
 
@@ -55,7 +55,9 @@ $(NAME) :
 	$(ps_srcs)
 	$(gnl)
 	ar rv $(NAME) $(OBJS) $(INC)
-	ranlib $(NAME) 
+	ranlib $(NAME)
+	cc push_swap.c $(FLAGS) $(NAME) -o push_swap
+	cc checker.c $(FLAGS) $(NAME) -o checker
 
 clean:
 	$(MAKE) -C libft/ clean
@@ -63,7 +65,7 @@ clean:
 	$(MAKE) -C gnl/ clean
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) push_swap checker
 
 re: fclean all
 

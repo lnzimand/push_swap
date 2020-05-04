@@ -106,13 +106,13 @@ void	ex_sort_b(t_stack **top_a, t_stack **top_b, distance lengths)
 	}
 }
 
-void	sort_b(t_stack **top_a, t_stack **top_b)
-{
-	distance	lengths;
+// void	sort_b(t_stack **top_a, t_stack **top_b)
+// {
+// 	distance	lengths;
 
-	while (!sorted_b(*top_b))
-	{
-		lengths = get_indexes(*top_b);
-		ex_sort_b(top_a, top_b, lengths);
-	}
-}
+// 	while (!sorted_b(top_b))
+// 	{
+// 		lengths = get_indexes(*top_b);
+// 		ex_sort_b(top_a, top_b, lengths);
+// 	}
+// }

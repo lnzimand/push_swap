@@ -20,32 +20,38 @@ void	c_push(t_stack **first, t_stack **last)
 	pop(last);
 }
 
+void	checkerErrorHandler(void)
+{
+	ft_putendl("KO");
+	exit(1);
+}
+
 void	execution(t_stack **top_a, t_stack **top_b, char *line)
 {
-	if (!ft_strcmp("sa", line))
+	if (!ft_strcmp("sa", line) && list_length(*top_a) > 1)
 		sa_sb(top_a);
-	else if (!ft_strcmp("sb", line))
+	else if (!ft_strcmp("sb", line) && list_length(*top_b) > 1)
 		sa_sb(top_b);
-	else if (!ft_strcmp("ss", line))
+	else if (!ft_strcmp("ss", line) && list_length(*top_a) > 1 && list_length(*top_b) > 1)
 		ss(top_a, top_b);
 	else if (!ft_strcmp("pa", line))
 		c_push(top_a, top_b);
 	else if (!ft_strcmp("pb", line))
 		c_push(top_b, top_a);
-	else if (!ft_strcmp("ra", line))
+	else if (!ft_strcmp("ra", line) && list_length(*top_a) > 1)
 		ra_rb(top_a);
-	else if (!ft_strcmp("rb", line))
+	else if (!ft_strcmp("rb", line) && list_length(*top_b) > 1)
 		ra_rb(top_b);
-	else if (!ft_strcmp("rr", line))
+	else if (!ft_strcmp("rr", line) && list_length(*top_a) > 1 && list_length(*top_b) > 1)
 		rr(top_a, top_b);
-	else if (!ft_strcmp("rra", line))
+	else if (!ft_strcmp("rra", line) && list_length(*top_a) > 1)
 		rra_rrb(top_a);
-	else if (!ft_strcmp("rrb", line))
+	else if (!ft_strcmp("rrb", line) && list_length(*top_b) > 1)
 		rra_rrb(top_b);
 	else if (!ft_strcmp("rrr", line) && list_length(*top_a) > 1 && list_length(*top_b) > 1)
 		rrr(top_a, top_b);
 	else
-		errorHandler();
+		checkerErrorHandler();
 }
 
 int		getline(t_stack **top_a, t_stack **top_b)
@@ -68,6 +74,8 @@ int		main(int argc, char **argv)
 	char	**arr;
 	char	*temp;
 
+	top_a = NULL;
+	top_b = NULL;
 	if (argc > 1)
 	{
 		if (argc == 2)

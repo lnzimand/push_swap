@@ -18,8 +18,8 @@ SRCS =	./alloc.c ./display.c ./ft_issign.c ./is_dup.c ./is_integer.c ./is_void.c
 		./reverse_rotate_ab.c ./array_length.c ./three_sort_a.c ./three_sort_b.c \
 		./list_length.c ./two_sort.c ./sortb.c ./get_indexes.c ./biggest_int.c \
 		./sorted_b.c ./getlastlist.c ./ps_push.c ./ps_swaps.c ./ps_rotate.c ./ps_rev_rot.c \
-		./ps_both.c ./error_handler.c ./sorted_arr.c ./ten.c ./ten_sort.c ./five_sort.c \
-		./push_to_a.c ./extended_five_sort.c ./ps_all.c
+		./ps_both.c ./error_handler.c ./sorted_arr.c ./five_sort.c ./extended_five_sort.c \
+		./push_to_a.c ./ps_all.c
 
 OBJS = ./alloc.o ./display.o ./ft_issign.o ./is_dup.o ./is_integer.o .//is_void.o \
 	   ./max_and_min_int.o ./pop.o ./push.o ./swap.o ./lstdel.o ./rotate.o ./rotate_ab.o\
@@ -27,7 +27,7 @@ OBJS = ./alloc.o ./display.o ./ft_issign.o ./is_dup.o ./is_integer.o .//is_void.
 	   ./three_sort_a.o ./three_sort_b.o ./list_length.o ./two_sort.o ./sortb.o \
 	   ./get_indexes.o ./biggest_int.o ./sorted_b.o ./swap_ab.o ./getlastlist.o ./ps_push.o \
 	   ./ps_swaps.o ./ps_rotate.o ./ps_rev_rot.o ./ps_both.o ./error_handler.o ./sorted_arr.o \
-	   ./ten_sort.o ./five_sort.o ./push_to_a.o ./extended_five_sort.o ./ps_all.o
+	   ./five_sort.o ./push_to_a.o ./extended_five_sort.o ./ps_all.o
 
 all:
 	gcc $(FLAGS) $(SRCS)

@@ -2,4 +2,4 @@ a.out
 *.swp
 *.txt
 *.a
-
+*copy*.c

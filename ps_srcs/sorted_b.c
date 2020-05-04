@@ -13,11 +13,11 @@
 #include "../push_swap.h"
 #include "../libft/libft.h"
 
-int		sorted_b(t_stack *top)
+int		sorted_b(t_stack **top)
 {
 	t_stack	*temp;
 
-	temp = top;
+	temp = *top;
 	while (temp->next != NULL)
 	{
 		if (temp->data < temp->next->data)
