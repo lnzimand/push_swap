@@ -251,14 +251,16 @@ void	sort(t_stack **a, t_stack **b)
 {
 	while (!sorted_arr(a))
 	{
-		if (list_length(*b) > 1)
+		if (list_length(*a) == 2 && (*a)->data > (*a)->next->data) 
+			ps_sa(a);
+		else if (list_length(*b) > 1)
 		{
-			if (dual_action(*a, *b))
+			if (list_length(*a) > 1 && list_length(*b) > 1 && dual_action(*a, *b))
 				execute_dual(a, b);
 			else
 			{
 				sort_a(a, b);
-				if (dual_action(*a, *b))
+				if (list_length(*a) > 1 && list_length(*b) > 1 && dual_action(*a, *b))
 					execute_dual(a, b);
 				sort_b(b);
 			}
